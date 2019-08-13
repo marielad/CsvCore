@@ -11,14 +11,17 @@ namespace TestASPNET.Services
 {
     public class VehicleService : IVehicleService
     {
+
+        private ICsvManager<VehicleEntity> csvManager = new CsvVehicle();
+
         public ProcessVehicleResponse addVehicle()
         {
             throw new NotImplementedException();
         }
 
-        public List<Vehicle> getAll()
+        public List<VehicleEntity> getAll()
         {
-            throw new NotImplementedException();
+            return csvManager.readCsv("./vehicles.csv");
         }
     }
 }

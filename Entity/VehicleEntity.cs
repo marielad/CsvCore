@@ -12,7 +12,7 @@ namespace TestASPNET.Entity
 
         public string Type { get; set; }
 
-        public string Manufacturer { get; set; }
+        public string ManufacturerNameShort { get; set; }
 
         public decimal Price { get; set; }
 

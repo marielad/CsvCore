@@ -1,0 +1,17 @@
+﻿VehicleId;Type;ManufacturerNameShort;Price;ReturnCode
+1;type1;manuf1;00,1;Valid
+2;type2;manuf2;00,2;Valid
+3;type3;manuf3;00,3;Valid
+4;type4;manuf4;00,4;Valid
+5;type5;manuf5;00,5;Valid
+6;type6;manuf6;00,6;Valid
+7;type7;manuf7;00,7;Valid
+8;type8;manuf8;00,8;Valid
+9;type9;manuf9;00,9;Valid
+10;type10;manuf10;00,10;Valid
+11;type11;manuf11;00,11;Valid
+12;type12;manuf12;00,12;Valid
+13;type13;manuf13;00,13;Valid
+14;type14;manuf14;00,14;Valid
+15;type15;manuf15;00,15;Valid
+16;type16;manuf16;00,16;Valid

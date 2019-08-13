@@ -13,35 +13,31 @@ namespace TestASPNET.Services
     {
         public List<VehicleEntity> readCsv(string csvPath)
         {
-            StreamReader sr = new StreamReader(csvPath);
-            CsvReader reader = new CsvReader(sr);
-            IEnumerable<VehicleEntity> vehicleEntities = reader.GetRecords<VehicleEntity>();
-            sr.Close();
-            return vehicleEntities.ToList();
+            StreamReader streamReader = new StreamReader(csvPath);
+            CsvReader csvReader = new CsvReader(streamReader);
+            List<VehicleEntity> vehicleEntities = csvReader.GetRecords<VehicleEntity>().ToList();
+            streamReader.Close();
+            return vehicleEntities;
         }
 
-        public void writeCsv(List<VehicleEntity> objectList)
+        public void writeCsv(VehicleEntity vehicleEntity, string csvPath)
         {
-            StreamReader sr = new StreamReader("test.csv");
-            //For easy understanding we will be writing same csv data read from one test.csv file to another copyfile.csv file
             StreamWriter write = new StreamWriter("copyfile.csv");
+            CsvWriter csw = new CsvWriter(write);
+            csw.WriteRecord<VehicleEntity>(vehicleEntity);
+            write.Close();
+        }
 
-            //Csv reader reads the stream
-            CsvReader csvread = new CsvReader(sr);
-
-            //Csv writer stream
+        public void writeListToCsv(List<VehicleEntity> vehicleEntityList, string csvPath)
+        {
+            StreamWriter write = new StreamWriter(csvPath);
             CsvWriter csw = new CsvWriter(write);
 
-            //csvread will fetch all record in one go to the IEnumerable object record
-            IEnumerable<VehicleEntity> record = csvread.GetRecords<VehicleEntity>();
-
-            foreach (var rec in record) // Each record will be fetched and printed on the screen
-            { 
-                //same time writes the csv file to another file : copyfile.csv
-                csw.WriteRecord<VehicleEntity>(rec);
+            foreach (var vehicleEntity in vehicleEntityList) 
+            {
+                csw.WriteRecord<VehicleEntity>(vehicleEntity);
             }
-            sr.Close();
-            write.Close();//close file streams
+            write.Close();
         }
     }
 }

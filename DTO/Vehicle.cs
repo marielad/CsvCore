@@ -16,6 +16,5 @@ namespace TestASPNET.DTO
         public string ManufacturerNameShort { get; set; }
         [JsonProperty("Price")]
         public decimal Price { get; set; }
-        public VehicleValidationResultCode ReturnCode { get; set; }
     }
 }

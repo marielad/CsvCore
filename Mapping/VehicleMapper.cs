@@ -11,7 +11,7 @@ namespace TestASPNET.Mapping
     public class VehicleMapper : Profile
     {
         public VehicleMapper() {
-            CreateMap<VehicleEntity, Vehicle>().ReverseMap();
+            CreateMap<Vehicle, VehicleEntity>().ForMember(dest => dest.ReturnCode, opt => opt.Ignore()).ReverseMap();
         }
     }
 }

@@ -8,6 +8,7 @@ namespace TestASPNET.Services
     public interface ICsvManager<T>
     {
         List<T> readCsv(string csvPath);
-        void writeCsv(List<T> objectList);
+        void writeCsv(T tObject, string csvPath);
+        void writeListToCsv(List<T> objectList, string csvPath);
     }
 }
