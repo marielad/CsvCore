@@ -7,8 +7,8 @@ namespace TestASPNET.DTO
 {
     public enum VehicleValidationResultCode
     {
+        NonSpecified,
         Valid,
-        Invalid,
-        NonSpecified
+        Invalid
     };
 }

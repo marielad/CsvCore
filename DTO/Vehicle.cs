@@ -9,12 +9,13 @@ namespace TestASPNET.DTO
     public class Vehicle
     {
         [JsonProperty("VehicleId")]
-        public int VehicleId { get; set; }
+        public int? VehicleId { get; set; }
         [JsonProperty("Type")]
         public string Type { get; set; }
         [JsonProperty("ManufacturerNameShort")]
         public string ManufacturerNameShort { get; set; }
         [JsonProperty("Price")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
     }
+
 }

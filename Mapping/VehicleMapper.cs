@@ -12,6 +12,11 @@ namespace TestASPNET.Mapping
     {
         public VehicleMapper() {
             CreateMap<Vehicle, VehicleEntity>().ForMember(dest => dest.ReturnCode, opt => opt.Ignore()).ReverseMap();
+            CreateMap<ProcessVehicleResponse, VehicleEntity>()
+                .ForMember(dest => dest.Type, opt => opt.Ignore())
+                .ForMember(dest => dest.ManufacturerNameShort, opt => opt.Ignore())
+                .ForMember(dest => dest.Price, opt => opt.Ignore())
+                .ReverseMap();
         }
     }
 }

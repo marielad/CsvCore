@@ -6,6 +6,8 @@ using TestASPNET.DTO;
 using TestASPNET.Entity;
 using CsvHelper;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using CsvHelper.Configuration;
 
 namespace TestASPNET.Services
 {
@@ -13,6 +15,7 @@ namespace TestASPNET.Services
     {
         public List<VehicleEntity> readCsv(string csvPath)
         {
+            csvExists(csvPath);
             StreamReader streamReader = new StreamReader(csvPath);
             CsvReader csvReader = new CsvReader(streamReader);
             List<VehicleEntity> vehicleEntities = csvReader.GetRecords<VehicleEntity>().ToList();
@@ -22,22 +25,31 @@ namespace TestASPNET.Services
 
         public void writeCsv(VehicleEntity vehicleEntity, string csvPath)
         {
-            StreamWriter write = new StreamWriter("copyfile.csv");
-            CsvWriter csw = new CsvWriter(write);
-            csw.WriteRecord<VehicleEntity>(vehicleEntity);
-            write.Close();
+            csvExists(csvPath);
+            Console.WriteLine("Starts Writing");
+            StreamWriter writer = new StreamWriter(csvPath);
+            CsvWriter csw = new CsvWriter(writer, new Configuration().UseNewObjectForNullReferenceMembers = true);
+            csw.WriteRecord(vehicleEntity);
+            writer.Flush();
+            writer.Close();
+            Console.WriteLine("Finish Writing");
         }
 
         public void writeListToCsv(List<VehicleEntity> vehicleEntityList, string csvPath)
         {
-            StreamWriter write = new StreamWriter(csvPath);
-            CsvWriter csw = new CsvWriter(write);
+            csvExists(csvPath);
+            StreamWriter writer = new StreamWriter(File.OpenWrite(csvPath));
+            CsvWriter csw = new CsvWriter(writer, new Configuration().UseNewObjectForNullReferenceMembers = true);
+            csw.WriteRecords(vehicleEntityList);
+            writer.Flush();
+            writer.Close();
+        }
 
-            foreach (var vehicleEntity in vehicleEntityList) 
-            {
-                csw.WriteRecord<VehicleEntity>(vehicleEntity);
+        private void csvExists(string csvPath) {
+            if (!File.Exists(csvPath)) {
+                File.Create(csvPath).Dispose();
+                Console.WriteLine("New File Created!");
             }
-            write.Close();
         }
     }
 }
